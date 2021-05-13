@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'backend'], function () {
-	Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+	Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 });
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+	Route::resource('slider', SliderController::class);
+});
+
+
+

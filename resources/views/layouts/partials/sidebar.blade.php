@@ -15,16 +15,16 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="active ">
-        <a href="./dashboard.html">
+      <li class="{{ Route::is('admin.dashboard') ? 'active' : '' }}">
+        <a href="{{ route('admin.dashboard') }}">
           <i class="nc-icon nc-bank"></i>
           <p>Dashboard</p>
         </a>
       </li>
-      <li>
-        <a href="./icons.html">
-          <i class="nc-icon nc-diamond"></i>
-          <p>Icons</p>
+      <li class="{{ Route::is('slider.index') ? 'active' : '' }}">
+        <a href="{{ route('slider.index') }}">
+          <i class="nc-icon nc-tv-2"></i>
+          <p>Manage Slider</p>
         </a>
       </li>
       <li>
