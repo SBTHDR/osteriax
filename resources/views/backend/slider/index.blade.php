@@ -12,47 +12,56 @@ Slider | Admin
     <div class="content">
         <div class="row">
             <div class="col-md-12">
+
+                @if(session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="nc-icon nc-simple-remove"></i>
+                        </button>
+                        <span>{{ session()->get('success') }}</span>
+                    </div>
+                @endif
+
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between">
                         <h4 class="card-title">Slider Images List</h4>
+                        <a href="{{ route('slider.create') }}" class="btn btn-primary btn-round">Add a Slider</a>
                     </div>
                     <div class="card-body">
-
-                            <table class="table table-striped table-bordered" id="sliderdatatable" style="width:100%">
-                                <thead class="text-primary">
-                                <th>No.</th>
-                                <th>Title</th>
-                                <th>Sub Title</th>
-                                <th>Images</th>
-                                <th>Uploaded Time</th>
-                                <th>Modified Time</th>
-                                </thead>
-                                <tbody>
-                                    @foreach($sliders as $key => $slider)
-                                        <tr>
-                                            <td>
-                                                {{ $key + 1 }}
-                                            </td>
-                                            <td>
-                                                {{ $slider->title }}
-                                            </td>
-                                            <td>
-                                                {{ $slider->sub_title }}
-                                            </td>
-                                            <td>
-                                                {{ $slider->image }}
-                                            </td>
-                                            <td>
-                                                {{ $slider->created_at }}
-                                            </td>
-                                            <td>
-                                                {{ $slider->updated_at }}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-
+                        <table class="table table-striped table-bordered" id="sliderdatatable" style="width:100%">
+                            <thead class="text-primary">
+                            <th>No.</th>
+                            <th>Title</th>
+                            <th>Sub Title</th>
+                            <th>Images</th>
+                            <th>Uploaded Time</th>
+                            <th>Modified Time</th>
+                            </thead>
+                            <tbody>
+                                @foreach($sliders as $key => $slider)
+                                    <tr>
+                                        <td>
+                                            {{ $key + 1 }}
+                                        </td>
+                                        <td>
+                                            {{ $slider->title }}
+                                        </td>
+                                        <td>
+                                            {{ $slider->sub_title }}
+                                        </td>
+                                        <td>
+                                            {{ $slider->image }}
+                                        </td>
+                                        <td>
+                                            {{ $slider->created_at }}
+                                        </td>
+                                        <td>
+                                            {{ $slider->updated_at }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
