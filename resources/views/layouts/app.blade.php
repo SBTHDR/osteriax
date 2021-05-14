@@ -92,7 +92,7 @@
         </main> --}}
 
 
-        <div class="wrapper ">
+        <div class="wrapper">
             <!-- Sidebar -->
             @if (Request::is('admin*'))                
                 @include('layouts.partials.sidebar')
