@@ -90,7 +90,8 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $slider = Slider::findOrFail($id);
+        return view('backend.slider.edit', compact('slider'));
     }
 
     /**
@@ -102,7 +103,38 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'sub_title' => 'required',
+            'image' => 'image',
+        ]);
+
+        $image = $request->file('image');
+        $imageSlug = Str::slug($request->title);
+
+        $slider = Slider::find($id);
+
+        if (isset($image)) {
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $imageSlug . '-' . $currentDate . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            if (!file_exists('upload/sliders')) {
+                mkdir('upload/sliders', 0777, true);
+            }
+            $image->move('upload/sliders', $imagename);
+        } else {
+            $imagename = $slider->image;
+        }
+
+
+        $slider->title = $request->title;
+        $slider->sub_title = $request->sub_title;
+        $slider->image = $imagename;
+
+        $slider->save();
+
+        session()->flash('success', 'Slider updated successfully!');
+        return redirect()->route('slider.index');
     }
 
     /**

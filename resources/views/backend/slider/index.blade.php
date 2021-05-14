@@ -13,14 +13,7 @@ Slider | Admin
         <div class="row">
             <div class="col-md-12">
 
-                @if(session()->has('success'))
-                    <div class="alert alert-success alert-dismissible fade show">
-                        <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-                            <i class="nc-icon nc-simple-remove"></i>
-                        </button>
-                        <span>{{ session()->get('success') }}</span>
-                    </div>
-                @endif
+                @include('layouts.partials.message')
 
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
@@ -36,6 +29,7 @@ Slider | Admin
                             <th>Images</th>
                             <th>Uploaded Time</th>
                             <th>Modified Time</th>
+                            <th>Action</th>
                             </thead>
                             <tbody>
                                 @foreach($sliders as $key => $slider)
@@ -57,6 +51,9 @@ Slider | Admin
                                         </td>
                                         <td>
                                             {{ $slider->updated_at }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('slider.edit', $slider->id) }}" class="btn btn-primary btn-round btn-sm">Edit</a>
                                         </td>
                                     </tr>
                                 @endforeach
