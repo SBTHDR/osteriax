@@ -53,7 +53,36 @@ Slider | Admin
                                             {{ $slider->updated_at }}
                                         </td>
                                         <td>
-                                            <a href="{{ route('slider.edit', $slider->id) }}" class="btn btn-primary btn-round btn-sm">Edit</a>
+                                            <a href="{{ route('slider.edit', $slider->id) }}" class="btn btn-primary btn-sm">Edit</a>
+
+                                            <a href="#delete-slider-{{ $slider->id }}" class="btn btn-danger btn-sm" data-toggle="modal">
+                                                Delete
+                                            </a>
+
+                                            <div class="modal fade mt-5" id="delete-slider-{{ $slider->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Delete Slider</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you want to delete this Slider?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <form action="{{ route('slider.destroy', $slider->id) }}" method="post">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                            </form>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </td>
                                     </tr>
                                 @endforeach
