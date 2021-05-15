@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    Create Slider | Admin
-@endsection
+@section('title', 'Edit Slider | Admin')
 
 @push('css')
 
@@ -17,7 +15,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Add a new Slider</h4>
+                        <h4 class="card-title">Edit Slider</h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('slider.update', $slider->id) }}" method="post" enctype="multipart/form-data">

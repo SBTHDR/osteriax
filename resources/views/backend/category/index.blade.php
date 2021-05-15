@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'All Slider | Admin')
+@section('title', 'All Category | Admin')
+
 
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
@@ -15,49 +16,45 @@
 
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <h4 class="card-title">All Slider Images List</h4>
-                        <a href="{{ route('slider.create') }}" class="btn btn-primary btn-round">Add a Slider</a>
+                        <h4 class="card-title">All Category List</h4>
+                        <a href="{{ route('category.create') }}" class="btn btn-primary btn-round">Add a Category</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped table-bordered" id="sliderdatatable" style="width:100%">
                             <thead class="text-primary">
                             <th>No.</th>
-                            <th>Title</th>
-                            <th>Sub Title</th>
-                            <th>Images</th>
+                            <th>Name</th>
+                            <th>Slug</th>
                             <th>Uploaded Time</th>
                             <th>Modified Time</th>
                             <th>Action</th>
                             </thead>
                             <tbody>
-                                @foreach($sliders as $key => $slider)
+                                @foreach($categories as $key => $category)
                                     <tr>
                                         <td>
                                             {{ $key + 1 }}
                                         </td>
                                         <td>
-                                            {{ $slider->title }}
+                                            {{ $category->name }}
                                         </td>
                                         <td>
-                                            {{ $slider->sub_title }}
+                                            {{ $category->slug }}
                                         </td>
                                         <td>
-                                            {{ $slider->image }}
+                                            {{ $category->created_at }}
                                         </td>
                                         <td>
-                                            {{ $slider->created_at }}
+                                            {{ $category->updated_at }}
                                         </td>
                                         <td>
-                                            {{ $slider->updated_at }}
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('slider.edit', $slider->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary btn-sm">Edit</a>
 
-                                            <a href="#delete-id-{{ $slider->id }}" class="btn btn-danger btn-sm" data-toggle="modal">
+                                            <a href="#delete-id-{{ $category->id }}" class="btn btn-danger btn-sm" data-toggle="modal">
                                                 Delete
                                             </a>
 
-                                            <div class="modal fade mt-5" id="delete-id-{{ $slider->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade mt-5" id="delete-id-{{ $category->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -67,10 +64,10 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            Are you sure you want to delete this Slider?
+                                                            Are you sure you want to delete this Category?
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <form action="{{ route('slider.destroy', $slider->id) }}" method="post">
+                                                            <form action="{{ route('category.destroy', $category->id) }}" method="post">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit" class="btn btn-danger">Delete</button>

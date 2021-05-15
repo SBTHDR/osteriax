@@ -27,12 +27,13 @@
           <p>Manage Slider</p>
         </a>
       </li>
-      <li>
-        <a href="./map.html">
-          <i class="nc-icon nc-pin-3"></i>
-          <p>Maps</p>
-        </a>
+      <li class="{{ Route::is('category.index') ? 'active' : '' }}">
+         <a href="{{ route('category.index') }}">
+             <i class="nc-icon nc-bullet-list-67"></i>
+             <p>Manage Category</p>
+         </a>
       </li>
+
       <li>
         <a href="./notifications.html">
           <i class="nc-icon nc-bell-55"></i>

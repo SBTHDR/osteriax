@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    Create Slider | Admin
-@endsection
+@section('title', 'Create Slider | Admin')
 
 @push('css')
 
