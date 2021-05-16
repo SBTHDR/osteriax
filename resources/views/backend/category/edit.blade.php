@@ -19,7 +19,7 @@
                         <h4 class="card-title">Edit Category</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('category.update', $category->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('category.update', $category->id) }}" method="post">
                             @csrf
                             @method('PUT')
 

@@ -33,12 +33,11 @@
              <p>Manage Category</p>
          </a>
       </li>
-
-      <li>
-        <a href="./notifications.html">
-          <i class="nc-icon nc-bell-55"></i>
-          <p>Notifications</p>
-        </a>
+      <li class="{{ Route::is('item.index') ? 'active' : '' }}">
+          <a href="{{ route('item.index') }}">
+              <i class="nc-icon nc-paper"></i>
+              <p>Manage Item</p>
+          </a>
       </li>
       <li>
         <a href="./user.html">

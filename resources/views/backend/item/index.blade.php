@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'All Slider | Admin')
+@section('title', 'All Items | Admin')
+
 
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
@@ -15,49 +16,59 @@
 
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <h4 class="card-title">All Slider Images List</h4>
-                        <a href="{{ route('slider.create') }}" class="btn btn-primary btn-round">Add a Slider</a>
+                        <h4 class="card-title">All Category List</h4>
+                        <a href="{{ route('item.create') }}" class="btn btn-primary btn-round">Add a Item</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped table-bordered" id="sliderdatatable" style="width:100%">
                             <thead class="text-primary">
                             <th>No.</th>
-                            <th>Title</th>
-                            <th>Sub Title</th>
-                            <th>Images</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>price</th>
+                            <th>image</th>
                             <th>Uploaded Time</th>
                             <th>Modified Time</th>
                             <th>Action</th>
                             </thead>
                             <tbody>
-                                @foreach($sliders as $key => $slider)
+                                @foreach($items as $key => $item)
                                     <tr>
                                         <td>
                                             {{ $key + 1 }}
                                         </td>
                                         <td>
-                                            {{ $slider->title }}
+                                            {{ $item->name }}
                                         </td>
                                         <td>
-                                            {{ $slider->sub_title }}
+                                            {{ $item->description }}
                                         </td>
                                         <td>
-                                            <img class="img-responsive img-thumbnail" src="{{ asset('upload/sliders/' . $slider->image) }}" alt="" style="width: 132px">
+                                            {{ $item->category->name }}
                                         </td>
                                         <td>
-                                            {{ $slider->created_at }}
+                                            {{ $item->price }}
                                         </td>
                                         <td>
-                                            {{ $slider->updated_at }}
+                                            <img class="img-responsive img-thumbnail" src="{{ asset('upload/items/' . $item->image) }}" alt="" style="width: 132px">
                                         </td>
                                         <td>
-                                            <a href="{{ route('slider.edit', $slider->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            {{ $item->created_at }}
+                                        </td>
+                                        <td>
+                                            {{ $item->updated_at }}
+                                        </td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="{{ route('item.edit', $item->id) }}" class="btn btn-primary btn-sm">E</a>
 
-                                            <a href="#delete-id-{{ $slider->id }}" class="btn btn-danger btn-sm" data-toggle="modal">
-                                                Delete
-                                            </a>
+                                                <a href="#delete-id-{{ $item->id }}" class="btn btn-danger btn-sm" data-toggle="modal">
+                                                    x
+                                                </a>
+                                            </div>
 
-                                            <div class="modal fade mt-5" id="delete-id-{{ $slider->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade mt-5" id="delete-id-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -67,10 +78,10 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            Are you sure you want to delete this Slider?
+                                                            Are you sure you want to delete this Item?
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <form action="{{ route('slider.destroy', $slider->id) }}" method="post">
+                                                            <form action="{{ route('item.destroy', $item->id) }}" method="post">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit" class="btn btn-danger">Delete</button>
