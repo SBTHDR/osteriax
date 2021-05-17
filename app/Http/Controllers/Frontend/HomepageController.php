@@ -12,7 +12,7 @@ class HomepageController extends Controller
 {
     public function index()
     {
-        $items = Item::all();
+        $items = Item::paginate(2);
         $sliders = Slider::all();
         $categories = Category::all();
         return view('welcome', compact('items', 'sliders', 'categories'));
