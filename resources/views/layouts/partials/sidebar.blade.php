@@ -39,11 +39,11 @@
               <p>Manage Item</p>
           </a>
       </li>
-      <li>
-        <a href="./user.html">
-          <i class="nc-icon nc-single-02"></i>
-          <p>User Profile</p>
-        </a>
+      <li class="{{ Route::is('reservation.index') ? 'active' : '' }}">
+          <a href="{{ route('reservation.index') }}">
+              <i class="nc-icon nc-single-02"></i>
+              <p>Manage Reservations</p>
+          </a>
       </li>
       <li>
         <a href="./tables.html">

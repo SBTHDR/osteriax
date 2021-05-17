@@ -92,6 +92,8 @@
   </header>
   <!-- End header section -->
 
+  @include('layouts.partials.message')
+
 
   <!-- Start slider  -->
   <section id="mu-slider">
@@ -276,26 +278,27 @@
 
               <div class="col-md-6">
                 <div class="mu-reservation-left">
-                  <form class="mu-reservation-form">
+                  <form class="mu-reservation-form" method="post" action="{{ route('reservation.store') }}">
+                    @csrf
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Full Name">
+                          <input type="text" class="form-control" placeholder="Full Name" name="name">
                         </div>
                       </div>
                       <div class="col-md-12">
                         <div class="form-group">
-                          <input type="email" class="form-control" placeholder="Email">
+                          <input type="email" class="form-control" placeholder="Email" name="email">
                         </div>
                       </div>
                       <div class="col-md-12">
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Phone Number">
+                          <input type="text" class="form-control" placeholder="Phone Number" name="phone">
                         </div>
                       </div>
                       <div class="col-md-12">
                         <div class="form-group">
-                          <select class="form-control">
+                          <select class="form-control" name="person">
                             <option value="0">How Many?</option>
                             <option value="1 Person">1 Person</option>
                             <option value="2 People">2 People</option>
@@ -312,12 +315,12 @@
                       </div>
                       <div class="col-md-12">
                         <div class="form-group">
-                          <input type="text" class="form-control" id="datepicker" placeholder="Date">
+                          <input type="text" class="form-control" id="datepicker" placeholder="Date" name="date">
                         </div>
                       </div>
                       <div class="col-md-12">
                         <div class="form-group">
-                          <textarea class="form-control" cols="30" rows="10" placeholder="Your Message"></textarea>
+                          <textarea class="form-control" name="message" cols="30" rows="10" placeholder="Your Message"></textarea>
                         </div>
                       </div>
                       <button type="submit" class="mu-readmore-btn">Make Reservation</button>

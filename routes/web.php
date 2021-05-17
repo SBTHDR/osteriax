@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ItemController;
+use App\Http\Controllers\Backend\ReservationsController;
+use App\Http\Controllers\Frontend\ReservationController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SliderController;
@@ -19,6 +22,7 @@ use App\Http\Controllers\Frontend\HomepageController;
 */
 
 Route::get('/', [HomepageController::class, 'index'])->name('welcome');
+Route::post('/reservation', [ReservationController::class, 'makeReservation'])->name('reservation.store');
 
 Auth::routes();
 
@@ -29,7 +33,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('slider', SliderController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('item', ItemController::class);
+    Route::get('reservation', [ReservationsController::class, 'index'])->name('reservation.index');
+    Route::post('reservation/{id}', [ReservationsController::class, 'statusChange'])->name('reservation.status');
 });
+
 
 
 
