@@ -216,43 +216,60 @@
   <!-- End Counter Section -->
 
   <!-- Start Restaurant Menu -->
-  <section>
+  <section id="mu-restaurant-menu">
       <div class="container">
           <div class="row">
-              <div class="col-md-6">
-                  <div class="card" style="padding: 10px">
-                      <div class="card-header" style="margin-bottom: 20px">
-                          <h2>All Category</h2>
+              <div class="col-md-12">
+                  <div class="mu-restaurant-menu-area">
+
+                      <div class="mu-title">
+                          <span class="mu-subtitle">Discover</span>
+                          <h2>OUR MENU</h2>
                       </div>
-                      <div class="card-body">
-                          @foreach($categories as $category)
-                              <div>
-                                  <h3>{{ $category->name }}</h3>
-                                  <hr>
-                              </div>
-                          @endforeach
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-6">
-                  <div class="card" style="padding: 10px">
-                      <div class="card-header" style="margin-bottom: 20px">
-                          <h2>All Items</h2>
-                      </div>
-                      <div class="card-body">
-                          @foreach($items as $item)
-                              <div class="">
-                                  <div class="">
-                                      <img class="img-thumbnail" src="{{ asset('upload/items/' . $item->image) }}" alt="" style="width: 128px">
+
+                      <div class="mu-restaurant-menu-content">
+                          <ul class="nav nav-tabs mu-restaurant-menu">
+                                  <li class="active"><a  href="#" data-toggle="tab">All</a></li>
+                              @foreach($categories as $category)
+                                  <li><a class="active" href="#{{ $category->slug }}" data-toggle="tab">{{ $category->name }}</a></li>
+                              @endforeach
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                              @foreach($categories as $category)
+                                  <div class="tab-pane fade in active" id="{{ $category->slug }}">
+                                      <div class="mu-tab-content-area">
+                                          <div class="row">
+
+                                              <div class="col-md-12">
+                                                  <div class="mu-tab-content-left">
+                                                      <ul class="mu-menu-item-nav">
+                                                          @foreach($category->items as $item)
+                                                              <li>
+                                                                  <div class="media">
+                                                                      <div class="media-left">
+                                                                          <a href="#" style="margin-right: 25px">
+                                                                              <img class="media-object img-thumbnail" src="{{ asset('upload/items/' . $item->image) }}" alt="img" style="width: 128px">
+                                                                          </a>
+                                                                      </div>
+                                                                      <div class="media-body">
+                                                                          <h4 class="media-heading"><a href="#">{{ $item->name }}</a></h4>
+                                                                          <span class="mu-menu-price">${{ $item->price }}</span>
+                                                                          <p>{{ $item->description }}</p>
+                                                                      </div>
+                                                                  </div>
+                                                              </li>
+                                                          @endforeach
+                                                      </ul>
+                                                  </div>
+                                              </div>
+
+                                          </div>
+                                      </div>
                                   </div>
-                                  <div class="">
-                                      <p>{{ $item->name }}</p>
-                                      <p>{{ $item->price }}</p>
-                                      <p>{{ $item->description }}</p>
-                                  </div>
-                              </div>
-                          @endforeach
-                          {{ $items->links() }}
+                              @endforeach
+                          </div>
                       </div>
                   </div>
               </div>
